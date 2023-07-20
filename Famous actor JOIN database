@@ -1,0 +1,35 @@
+/* Here I created database of famous actors, movies they starred in, and others they co-led with actors included in this database */
+
+/* Movie Star Table */
+
+Create table movie_stars (id INTEGER PRIMARY KEY, name TEXT, age INTEGER);
+
+Insert into movie_stars (name, age) VALUES ("Robert DeNiro", 79);
+Insert into movie_stars (name, age) Values ("AL Pacino", 83);
+Insert into movie_stars (name, age) Values ("Joe Pesci", 80);
+Insert into movie_stars (name, age) Values( "Jack Nicholson", 86);
+
+/*Famous movies they starred in
+Create table movies (id INTEGER PRIMARY KEY, title TEXT, lead_id INTEGER);
+
+Insert into movies (title, lead_id) VALUES ("Taxi Driver", 1);
+Insert into movies (title, lead_id) VALUES ("Scarface",2);
+Insert into movies (title, lead_id) VALUES ("My Cousin Vinny", 3);
+Insert into movies (title, lead_id) VALUES ("The Shining", 4);
+
+
+Create table movies_co_lead (id Integer PRIMARY KEY, title TEXT, lead_1 INTEGER, lead_2 INTEGER);
+
+Insert into movies_co_lead (title, lead_1, lead_2) Values ("The Godfather Part II", 1, 2);
+Insert into movies_co_lead (title, lead_1, lead_2) Values ("The Last Tycoon", 1, 4);
+Insert into movies_co_lead (title, lead_1, lead_2) Values ("Goodfellas", 1, 3);
+Insert into movies_co_lead (title, lead_1, lead_2) Values ("The Irishman", 2, 3);
+
+/* What roles are these actors known for? */
+
+Select m.name, m2.title from movie_stars as m Join movies as m2 on m.id=m2.lead_id;
+
+/* What movies in this database has Robert DeNiro been a main lead and also a co-lead? */
+
+Select m.name like "robert deniro" as Robert_DeNiro, m2.title, m3.title from movie_stars as m join movies as m2 on m.id=m2.lead_id join movies_co_lead as m3 on m3.lead_1=m.id
+
