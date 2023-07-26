@@ -1,0 +1,51 @@
+/*In this SQL, I'm querying a database with multiple tables in it to quantify statistics about customer and order data.*\
+
+#1: How many orders were placed in January? 
+Select Count(Quantity) 
+From JanSales 
+Where orderID IS NOT NULL AND orderID <> "ORDER ID"
+
+
+
+#2. How many of those orders were for an iPhone?
+Select Count(Quantity)
+From JanSales
+Where Product Like "iPhone" AND orderID IS NOT NULL AND orderID <> "ORDER ID"
+
+
+
+#3. Select the customer account numbers for all the orders that were placed in February. 
+Select customers.acctnum, FebSales.product
+From FebSales
+Inner Join customers
+On FebSales.orderID=customers.order_ID
+Where orderID IS NOT NULL AND orderID <> "ORDER ID"
+
+
+
+#4. Which product was the cheapest one sold in January, and what was the price? 
+Select product, price
+From JanSales
+Where price IN (Select min(price) From JanSales) And orderID IS NOT NULL AND orderID <> "ORDER ID"
+
+
+
+#5. What is the total revenue for each product sold in January?
+Select SUM(Quantity)*price as revenue, Product
+From JanSales
+Group By Product
+
+
+#6. Which products were sold in February at 548 Lincoln St, Seattle, WA 98101, how many of each were sold, and what was the total revenue?
+Select SUM (Quantity), Product, SUM(Quantity)*price as revenue
+From FebSales
+Where location = "548 Lincoln St, Seattle, WA 98101"
+
+
+#7. How many customers ordered more than 2 products at a time, and what was the average amount spent for those customers? 
+Select count(customers.acctnum), avg(quantity*price)
+From FebSales
+Left Join customers
+on FebSales.orderID = customers.order_id
+Where FebSales.Quantity > 2
+And length(orderid) = 6 And orderid <> "ORDER ID"
