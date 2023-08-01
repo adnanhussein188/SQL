@@ -1,0 +1,71 @@
+# For this project, I downloaded Spotify data from Kaggle.
+# Then I created a table to insert Spotify data into.
+# Finally, I performed analytics on the data using SQL. 
+
+
+#Creating the table: 
+CREATE TABLE BIT_DB.Spotifydata (
+id integer PRIMARY KEY,
+artist_name varchar NOT NULL,
+track_name varchar NOT NULL,
+track_id varchar NOT NULL,
+popularity integer NOT NULL,
+danceability decimal(4,3) NOT NULL,
+energy decimal(4,3) NOT NULL,
+key integer NOT NULL,
+loudness decimal(5,3) NOT NULL,
+mode integer NOT NULL,
+speechiness decimal(5,4) NOT NULL,
+acousticness decimal(6,5) NOT NULL,
+instrumentalness text NOT NULL,
+liveness decimal(5,4) NOT NULL,
+valence decimal(4,3) NOT NULL,
+tempo decimal(6,3) NOT NULL,
+duration_ms integer NOT NULL,
+time_signature integer NOT NULL)
+
+#Then I inserted the Spotify Data .csv into the table.
+#Then I explored the data with the following questions.
+
+1. What is the average dancebility by artist?
+
+Select distinct artist_name, AVG(danceability)
+from Spotifydata
+Group By artist_name
+Order By AVG(danceability) desc
+
+2. What are track ids for the songs that have SZA on them?
+
+Select artist_name, track_name, track_id
+From Spotifydata
+Where artist_name LIKE "%SZA%" 
+OR track_name Like "%SZA%"
+
+3. What are the top ten most popular songs in this table?
+
+Select artist_name, track_name, popularity
+From Spotifydata
+Having MAX(popularity)
+Order by popularity desc
+Limit 10
+
+4. What songs in this table dont have a 4/4 time signature?
+
+Select artist_name, track_name, time_signature
+From Spotifydata
+Where time_signature <> "4"
+Group By track_name
+ 
+
+5. How many spots does Olivia Rodrigo have on this list?
+
+Select Count(id) as rows 
+From Spotifydata
+Where artist_name = "Olivia Rodrigo"
+
+6. What is the average duration of the top ten songs on this list?
+
+Select avg(duration_ms/60000) as duration_mn
+From Spotifydata
+Where id in (1,2,3,4,5,6,7,8,9,10)
+
