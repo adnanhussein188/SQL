@@ -65,7 +65,7 @@ Where artist_name = "Olivia Rodrigo"
 
 6. What is the average duration of the top ten songs on this list?
 
-Select avg(duration_ms/60000) as duration_mn
+Select avg(duration_ms/60000) as avg_duration
 From Spotifydata
-Where id in (1,2,3,4,5,6,7,8,9,10)
+Limit 10
 
