@@ -1,7 +1,7 @@
-Here I created a clothing store database
+/*Here I created a clothing store database*/
 Create Table clothing_store (id INTEGER PRIMARY KEY, item TEXT, quantity INTEGER);
 
-Then I added items to said database:
+/*Then I added items to said database:*/
 
 Insert Into clothing_store VALUES (1, "t-shirt", 3);
 Insert into clothing_store VALUES (2, "jeans", 5);
@@ -9,7 +9,7 @@ Insert into clothing_store VALUES (3, "button-ups",6);
 Insert into clothing_store Values (4, "dress shoes", 4);
 Insert into clothing_store VALUES (5, "sneakers", 5);
 
-Then I aggregated the data by the sum of the items, id number, quantity, and average quantity
+/*Then I aggregated the data by the sum of the items, id number, quantity, and average quantity*/
 
 Select sum(quantity) from clothing_store;
 Select * from clothing_store Order by id desc;
