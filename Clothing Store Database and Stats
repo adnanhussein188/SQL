@@ -1,4 +1,4 @@
-/*Here I created a clothing store database*/
+/*Here I created a clothing store database*/ 
 Create Table clothing_store (id INTEGER PRIMARY KEY, item TEXT, quantity INTEGER);
 
 /*Then I added items to said database:*/
